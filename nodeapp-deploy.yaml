@@ -25,32 +25,6 @@ spec:
            - name: devop
 
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nodeapp-green
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: nodeapp
-  template:
-    metadata:
-      labels:
-        app: nodeapp
-        color: green
-    spec:
-      containers:
-        - image: "phx.ocir.io/orasenatdoracledigital05/devop/nodeapp:v1"
-          imagePullPolicy: Always
-          name: nodeapp
-          ports:
-            - containerPort: 8080
-              name: nodeapp
-              protocol: TCP
-      imagePullSecrets:
-           - name: devop
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -63,4 +37,4 @@ spec:
     targetPort: 8080
   selector:
     app: nodeapp
-    color: green
+    color: blue #Change this to green to direct traffic to green pods
